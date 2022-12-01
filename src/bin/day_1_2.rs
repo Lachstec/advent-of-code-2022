@@ -1,9 +1,10 @@
-use std::fs;
-use std::io;
+use std::{
+    io,
+    fs
+};
 
-
-fn main() -> Result<(), io::Error>{
-    let sums: Vec<u32>;
+fn main() -> Result<(), io::Error> {
+    let mut sums: Vec<u32>;
     let data = fs::read_to_string("resources/input_1_1.txt")?;
 
     let parts: Vec<&str> = data.split("\n\n").collect();
@@ -14,7 +15,13 @@ fn main() -> Result<(), io::Error>{
                 .sum()
         }).collect();
 
-    println!("{}", sums.iter().max().unwrap());
+    sums.sort_unstable();
+    let sum: u32 = sums.iter()
+        .rev()
+        .take(3)
+        .sum();
+
+    println!("Result: {}", sum);
 
     Ok(())
 }
