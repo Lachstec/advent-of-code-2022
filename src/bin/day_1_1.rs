@@ -3,11 +3,10 @@ use std::io;
 
 
 fn main() -> Result<(), io::Error>{
-    let sums: Vec<u32>;
     let data = fs::read_to_string("resources/input_1_1.txt")?;
 
     let parts: Vec<&str> = data.split("\n\n").collect();
-    sums = parts.iter()
+    let sums: Vec<u32> = parts.iter()
         .map(|numstr| {
             numstr.split("\n")
                 .map(|x| x.parse::<u32>().unwrap())
